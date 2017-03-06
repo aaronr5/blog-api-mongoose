@@ -12,11 +12,7 @@ const app = express();
 app.use(morgan('common'));
 app.use(bodyParser.json());
 
-
-
-app.get('/posts/:id?', (req, res) => {
-  const postId = req.params.id;
-  if (!postId) {
+app.get('/posts', (req, res) => {
     BlogPost
       .find()
       .exec()
@@ -28,17 +24,17 @@ app.get('/posts/:id?', (req, res) => {
           console.error(err);
           res.status(500).json({message: 'Internal server error'});
         });
-    }
-    if (postId) {
-      BlogPost
-        .findById(postId)
-        .exec()
-        .then(post => res.status(200).json(post.apiRepr()))
-        .catch(err => {
-          console.error(err);
-            res.status(500).json({message: 'Internal server error'})
-        });
-    }
+});
+
+app.get('/posts/:id', (req, res) => {
+  BlogPost
+    .findById(req.params.id)
+    .exec()
+    .then(post => res.status(200).json(post.apiRepr()))
+    .catch(err => {
+      console.error(err);
+        res.status(500).json({message: 'Internal server error'})
+    });
 });
 
 app.post('/posts', (req, res) => {
