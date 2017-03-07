@@ -11,7 +11,6 @@ const {TEST_DATABASE_URL} = require('../config');
 
 chai.use(chaiHttp);
 
-
 function seedBlogData() {
   console.info('seeding blog data');
   const seedData = [];
