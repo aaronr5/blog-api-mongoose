@@ -107,13 +107,48 @@ describe('Blog Post API', function() {
 
   describe('PUT endpoint', function() {
     it('should update a specified already existing blog post', function() {
+      const updatedPost = {
+        title: 'updated blog title',
+        content: 'updated blog content'
+      };
 
+      return BlogPost
+        .findOne()
+        .exec()
+        .then(function(post) {
+          updatedPost.id = post.id;
+
+          return chai.request(app)
+            .put(`/posts/${post.id}`)
+            .send(updatedPost);
+        })
+        .then(function(res) {
+          res.should.have.status(204);
+          return BlogPost.findById(updatedPost.id).exec();
+        })
+        .then(function(post) {
+          post.title.should.equal(updatedPost.title);
+          post.content.should.equal(updatedPost.content);
+        })
     });
   });
 
   describe('DELETE endpoint', function() {
-    it('should remove a specified blog post', function() {
-
+    it('should delete a specified blog post', function() {
+      return BlogPost
+        .findOne()
+        .exec()
+        .then(function(_post) {
+          post = _post;
+          return chai.request(app).delete(`/posts/${post.id}`);
+        })
+        .then(function(res) {
+          res.should.have.status(204);
+          return BlogPost.findById(post.id).exec();
+        })
+        .then(function(_post) {
+          should.not.exist(_post);
+        });
     });
   });
 
