@@ -2,3 +2,10 @@ language: node_js
 node_js: node
 services:
 - mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: TwZZUfVXKAnzSQU8UrophEbGiCEST3okWiwbVpenV9WAzgVWmkdUHTW6+xfqZ42AWk/4OIQT8a604GnPgyldjJg+/rMLcEqfio9f3cWa1sKEW0phwYnd9EkDjEsHT/iiEMnDzNb4A3jsFM6MAKIT08Eqbil1zzhHAQZuyyamuFqTku9VGkzyJ+gLv5OlHNeXx7qEXPOmgd/JuzzlNSTUWGDk1P45np6lc1ic7c1MdvycsP0XbUtqx5TG4n8xcn+ezkFuG/sVjrvJZwWWNPIQfSiRyjMif1RNrbwOS0czVks8hthNWJFXvOHwXVnxUxaIaWC4mHBgqgpr8moOyvu/wbIJD8ZQzzWJAUvogy9SlFqzml2akf+WEGeF9OHzkCZaU9dkXL5FNVFVv4iqqvRW+TCxAvupDT0mChnejlE/TDu9UHOSJUrnnYZIvdb0KbL3Zw7dRf7DdgjsJisfz8yaMfUDk9ejQPUsL/zLVBZv2acxskOTwotDAtzUFZ+lsQBLVYLkSm2HaMDLSIDb1A0dc0t7Q+Ej0I4prbNc7WjBzUxXguydBVqi5t63J4YydpR3muxBAi37sfXEWcxs2Geegbtk+JqC5+zOqOAf1jKclSX4XYXph9cFM64m6h7gp1Dnq7Q0iFEIisafniQpII4351/hiM8rf6Or8jT+BFftkfI=
+  app: secret-chamber-86363
+  on:
+    repo: aaronr5/blog-api-mongoose
